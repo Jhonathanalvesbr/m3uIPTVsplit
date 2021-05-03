@@ -1,8 +1,13 @@
 import os.path
 from operator import itemgetter, attrgetter
-caminho = input("Caminho do arquivo m3u: ")
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+from tkinter import filedialog
+
+Tk().withdraw()
+caminho = askopenfilename()
 arquivo = open(caminho,encoding="utf8")
-destino = input("Caminho de destino: ")
+destino = filedialog.askdirectory()
 
 class arquivoM3u:
     def __init__(self, grupo, nome, link, foto, m3u):
