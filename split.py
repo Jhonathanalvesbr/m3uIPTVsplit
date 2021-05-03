@@ -4,7 +4,8 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 from tkinter import filedialog
 
-Tk().withdraw()
+frame = Tk()
+frame.withdraw()
 caminho = askopenfilename()
 arquivo = open(caminho,encoding="utf8")
 destino = filedialog.askdirectory()
@@ -47,3 +48,5 @@ for linha in arq:
     txt.append(linha.link+"\n")
     criarArq.writelines(txt)
     criarArq.close()
+
+frame.destroy()
