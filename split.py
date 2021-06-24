@@ -31,16 +31,21 @@ for linha in arquivo:
     arq.append(arquivoM3u(grupo,nome,link,foto,m3u))
 
 arq = sorted(arq, key=lambda arquivoM3u: arquivoM3u.grupo)
-
-for linha in arq:
+i = 0;
+while(i < len(arq)):
+    linha = arq[i]
     grupo = linha.grupo
     grupo = grupo.replace('|','-').replace("\"",'').replace(':','').replace("?", '')
     fullfilename = os.path.join(destino, grupo)
     if(os.path.exists(fullfilename) == False):
+        print(str(round((i*100)/len(arq),2)) + "% - " + str(i)+" : "+str(len(arq)) + "\n" + fullfilename)
         os.mkdir(fullfilename)
+    while(fullfilename[len(fullfilename)-1] == ' '):
+        fullfilename = fullfilename[:-1]
     nome = linha.nome+".m3u";
     nome = nome.replace("/", '-').replace("?", '').replace(":","").replace("*",'')
     criarArq = os.path.join(fullfilename, nome)
+    criarArq.replace("\\","/")
     criarArq = open(criarArq, "a",encoding="utf8")
     txt = list()
     txt.append("#EXTM3U")
@@ -48,5 +53,6 @@ for linha in arq:
     txt.append(linha.link+"\n")
     criarArq.writelines(txt)
     criarArq.close()
-
+    i = i + 1
+print(str(round((i*100)/len(arq),2))+"%\nFim!!")
 frame.destroy()
