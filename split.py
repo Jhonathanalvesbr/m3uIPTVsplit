@@ -22,6 +22,7 @@ class arquivoM3u:
     
 arq = []
 arquivo.readline()
+arquivo.readline()
 for linha in arquivo:
     foto = linha.split("tvg-logo=")[1].split("group-title=")[0].split("\n")[0]
     grupo = linha.split("group-title=")[1].split(",")[0].split("\n")[0]
@@ -45,7 +46,9 @@ while(i < len(arq)):
     nome = linha.nome+".m3u";
     nome = nome.replace("/", '-').replace("?", '').replace(":","").replace("*",'')
     criarArq = os.path.join(fullfilename, nome)
-    criarArq.replace("\\","/")
+    criarArq = criarArq.replace("\\","/")
+    criarArq = criarArq.replace('"',"")
+    criarArq = criarArq.replace('  '," ")
     criarArq = open(criarArq, "a",encoding="utf8")
     txt = list()
     txt.append("#EXTM3U")
