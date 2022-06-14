@@ -36,7 +36,7 @@ i = 0;
 while(i < len(arq)):
     linha = arq[i]
     grupo = linha.grupo
-    grupo = grupo.replace('|','-').replace("\"",'').replace(':','').replace("?", '')
+    grupo = grupo.replace('|','-').replace("\"",'').replace(':','').replace("?", '').replace('   '," ").replace('  '," ")
     fullfilename = os.path.join(destino, grupo)
     if(os.path.exists(fullfilename) == False):
         print(str(round((i*100)/len(arq),2)) + "% - " + str(i)+" : "+str(len(arq)) + "\n" + fullfilename)
